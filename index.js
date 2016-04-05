@@ -16,6 +16,7 @@ var i2c_address = 0x05;
  
 var spawn = require('child_process').spawn;
 var proc;
+app.use(express.static(path.join(__dirname, 'public')));
  
 app.use('/', express.static(path.join(__dirname, 'stream')));
  
