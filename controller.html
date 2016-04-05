@@ -100,6 +100,7 @@
 	document.getElementById("left-button").onclick = function() {left()};
 	document.getElementById("right-button").onclick = function() {right()};
 	document.getElementById("down-button").onclick = function() {down()};
+	//document.getElementById("test").onclick = function() {test()};
 	//document.getElementById("play-lullaby1").onclick = function() {doSomething()};
 	function up(){
 	socket.emit('up');
@@ -123,7 +124,7 @@
 		socket.emit('doSomething');
 	}
 	function test(){
-		document.getElementById("test").style.color = red;
+		document.getElementById("test").style.color = "red";
 	}
 	</script>
 </body>
