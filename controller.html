@@ -23,12 +23,17 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	<script>
+	var socket = io();
+	function doSomething(){
+		socket.emit('doSomething');
+	}
+	</script>
 </head>
 
 <body>
 	<div class="container-fluid">
-	<button type="button" id="play-lullaby1">PLAY PLEASE</button>
+	<button type="button" onclick="doSomething()" id="play-lullaby1">PLAY PLEASE</button>
 		<div class="">
 			<div class="row">
 				<div class="col-xs-1 col-xs-offset-1">
@@ -89,12 +94,11 @@
 
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
-	var socket = io();
 	document.getElementById("up-button").onclick = function() {up()};
 	document.getElementById("left-button").onclick = function() {left()};
 	document.getElementById("right-button").onclick = function() {right()};
 	document.getElementById("down-button").onclick = function() {down()};
-	document.getElementById("play-lullaby1").onclick = function() {doSomething()};
+	//document.getElementById("play-lullaby1").onclick = function() {doSomething()};
 	function up(){
 	socket.emit('up');
 	}
@@ -112,9 +116,6 @@
 	}
 	function play(){
 		socket.emit('play');
-	}
-	function doSomething(){
-		socket.emit('doSomething');
 	}
 	</script>
 </body>
