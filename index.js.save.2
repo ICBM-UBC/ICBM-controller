@@ -10,7 +10,7 @@ var i2c = require('i2c-bus'),
     i2c1;
 
 var rotation = 0;
-var rotationUD = 90;
+
 
 var i2c_address = 0x05;
  
@@ -22,7 +22,7 @@ app.use('/', express.static(path.join(__dirname, 'stream')));
  
  
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/controller.html');
 });
 
  
@@ -89,13 +89,12 @@ http.listen(3000, function() {
 
 function up(){
 	console.log('up');
+        i2c1.writeByte(i2c_address,1,rotation,cd);
 
 }
 function down(){
         console.log('down');
-	i2c1 = i2c.opeb(1,cd);
-	i2c1.writeByte(i2c_address,1,rotation,cd);
-
+        i2c1.writeByte(i2c_address,1,rotation,cd);
 }
 function left(){
         console.log('left');
@@ -113,7 +112,6 @@ function right(){
 	rotation = rotation + 5;
 	if (rotation > 180) rotation = 180;
         i2c1.writeByte(i2c_address,0,rotation,cd);
-//        i2c1.writeByte(i2c_address,1,rotation,cd);
  
 }
 var sys = require('sys')
