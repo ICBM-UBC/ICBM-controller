@@ -34,6 +34,7 @@
 <body>
 	<div class="container-fluid">
 	<button type="button" onclick="doSomething()" id="play-lullaby1">PLAY PLEASE</button>
+	<button type="button" onclick="test()" id="test">test</button>
 		<div class="">
 			<div class="row">
 				<div class="col-xs-1 col-xs-offset-1">
@@ -94,6 +95,7 @@
 
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
+	var socket = io();
 	document.getElementById("up-button").onclick = function() {up()};
 	document.getElementById("left-button").onclick = function() {left()};
 	document.getElementById("right-button").onclick = function() {right()};
@@ -116,6 +118,12 @@
 	}
 	function play(){
 		socket.emit('play');
+	}
+	function doSomething(){
+		socket.emit('doSomething');
+	}
+	function test(){
+		document.getElementById("test").style.color = red;
 	}
 	</script>
 </body>
