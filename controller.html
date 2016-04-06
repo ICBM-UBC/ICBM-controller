@@ -62,7 +62,7 @@
 					<button type="button" class="btn btn-default btn-lg" id="right-button" aria-label="right"><span class ="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
 				</div>
 				<div class="col-xs-2 col-xs-offset-5">
-					<button type="button" id ="hi1" class="btn btn-default btn-lg">hi</button>
+					<button type="button" id ="get_data" onclick="initData()" class="btn btn-default btn-lg">GET DATA</button>
 				</div>
 			</div>
 			<div class="row">
@@ -70,7 +70,16 @@
 					<button type="button" class="btn btn-default btn-lg" id="down-button" aria-label="down"><span class ="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></button>
 				</div>
 				<div class="col-xs-2 col-xs-offset-6">
-					<button type="button" class="btn btn-default btn-lg">hi</b utton>
+					<button type="button" class="btn btn-default btn-lg">button2</b utton>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<p>Distance: <span id="distance_data"></span></p>
+						<p>Temperature: <span id="temperature_data"></span></p>
+						<p>Humidity: <span id="humidity_data"></span></p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -127,6 +136,14 @@
 	}
 	function test(){
 		document.getElementById("test").style.color = "red";
+	}
+	function setData(){
+		document.getElementById("distance_data").innerHTML = dataIn[1];
+		document.getElementById("temperature_data").innerHTML = dataIn[3];
+		document.getElementById("humidity_data").innerHTML = dataIn[5];
+	}
+	function initData(){
+		setInterval(setData, 1000);
 	}
 	</script>
 </body>
