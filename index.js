@@ -117,7 +117,7 @@ function down(){
 
 }
 function up(){
-        console.log('up');
+    console.log('up');
 	i2c1 = i2c.open(1,cd);
 	rotationUD = rotationUD - 5;
 	if (rotationUD < 0) rotationUD = 0;
