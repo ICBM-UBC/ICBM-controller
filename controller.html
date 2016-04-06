@@ -106,9 +106,10 @@
 	<script src="index.js"></script>
 	<script>
 	var socket = io();
-	socket.on('data', function(dataIn){
-		setData(dataIn[1],dataIn[3],dataIn[5]);
+	socket.on('data', function(number){
+		setData(number,number+1,number+2);
 	})
+	
 	document.getElementById("up-button").onclick = function() {up()};
 	document.getElementById("left-button").onclick = function() {left()};
 	document.getElementById("right-button").onclick = function() {right()};

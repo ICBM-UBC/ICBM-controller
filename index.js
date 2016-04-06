@@ -34,8 +34,9 @@ io.on('connection', function(socket) {
   sockets[socket.id] = socket;
   console.log("Total clients connected : ", Object.keys(sockets).length);
  
+  var number = 0;
   var interval = setInterval(function(){
-	  socket.emit("data", dataIn);
+	  socket.emit("data", number);
   }, 1000)
   
   socket.on('disconnect', function() {
