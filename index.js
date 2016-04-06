@@ -34,7 +34,12 @@ io.on('connection', function(socket) {
   sockets[socket.id] = socket;
   console.log("Total clients connected : ", Object.keys(sockets).length);
  
+  var interval = setInterval(function(){
+	  socket.emit("data", dataIn);
+  }, 1000)
+  
   socket.on('disconnect', function() {
+	clearInterval(interval);
     delete sockets[socket.id];
  
     // no more sockets, kill the stream

@@ -103,8 +103,12 @@
 	</script>
 
 	<script src="/socket.io/socket.io.js"></script>
+	<script src="index.js"></script>
 	<script>
 	var socket = io();
+	socket.on('data', function(dataIn){
+		setData(dataIn[1],dataIn[3],dataIn[5]);
+	})
 	document.getElementById("up-button").onclick = function() {up()};
 	document.getElementById("left-button").onclick = function() {left()};
 	document.getElementById("right-button").onclick = function() {right()};
@@ -137,12 +141,10 @@
 	function test(){
 		document.getElementById("test").style.color = "red";
 	}
-	function setData(){
-		//testData++;
-		var testData = buf[1];
-		document.getElementById("distance_data").innerHTML = testData;
-		document.getElementById("temperature_data").innerHTML = testData;
-		document.getElementById("humidity_data").innerHTML = testData;
+	function setData(d, t, h){
+		document.getElementById("distance_data").innerHTML = d;
+		document.getElementById("temperature_data").innerHTML = t;
+		document.getElementById("humidity_data").innerHTML = h;
 	}
 	function initData(){
 		setInterval(setData, 1000);
