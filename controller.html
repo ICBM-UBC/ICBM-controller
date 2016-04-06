@@ -148,7 +148,8 @@
 		document.getElementById("humidity_data").innerHTML = h;
 	}
 	function initData(){
-		setInterval(setData, 1000);
+		socket.emit('requestData');
+		//setInterval(setData, 1000);
 	}
 	</script>
 </body>

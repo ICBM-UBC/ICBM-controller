@@ -4,7 +4,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var fs = require('fs');
 var path = require('path');
-
+var distance = 0;
 const dataIn = Buffer(6);
 
 var i2c = require('i2c-bus'),
@@ -34,9 +34,8 @@ io.on('connection', function(socket) {
   sockets[socket.id] = socket;
   console.log("Total clients connected : ", Object.keys(sockets).length);
  
-  var number = 0;
   var interval = setInterval(function(){
-	  socket.emit("data", number);
+	  socket.emit("data", distance);
   }, 1000)
   
   socket.on('disconnect', function() {
@@ -100,7 +99,9 @@ console.log('reading');
 i2c1 = i2c.open(1, cd);
 i2c1.readI2cBlock(i2c_address,0,6,dataIn,cd);
 console.log(dataIn);
+distance = dataIn[1];
 }
+
 
 function down(){
 	console.log('down');
