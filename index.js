@@ -5,11 +5,12 @@ var io = require('socket.io')(http);
 var fs = require('fs');
 var path = require('path');
 
-var int = 1;
+const dataIn = Buffer(6);
+
 var i2c = require('i2c-bus'),
     i2c1;
 
-var rotation = 0;
+var rotation = 90;
 var rotationUD = 90;
 
 var i2c_address = 0x05;
@@ -22,7 +23,7 @@ app.use('/', express.static(path.join(__dirname, 'stream')));
  
  
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/controller.html');
 });
 
  
@@ -76,7 +77,10 @@ io.on('connection', function(socket) {
     stop();
   });  
   
- 
+  socket.on('requestData', function() {
+    requestData();
+  });
+
 });
 
 
@@ -85,20 +89,31 @@ http.listen(3000, function() {
 });
 
 
-
-
-function up(){
-	console.log('up');
-
+function requestData() {
+console.log('reading');
+i2c1 = i2c.open(1, cd);
+i2c1.readI2cBlock(i2c_address,0,6,dataIn,cd);
+console.log(dataIn);
 }
+
 function down(){
-        console.log('down');
-	i2c1 = i2c.opeb(1,cd);
-	i2c1.writeByte(i2c_address,1,rotation,cd);
+	console.log('down');
+	i2c1 = i2c.open(1,cd);
+	rotationUD = rotationUD + 5;
+	if (rotationUD > 180) rotationUD = 180;
+        i2c1.writeByte(i2c_address,1,rotationUD,cd);
 
 }
-function left(){
-        console.log('left');
+function up(){
+        console.log('up');
+	i2c1 = i2c.open(1,cd);
+	rotationUD = rotationUD - 5;
+	if (rotationUD < 0) rotationUD = 0;
+	i2c1.writeByte(i2c_address,1,rotationUD,cd);
+
+}
+function right(){
+        console.log('right');
 	console.log('rotation: ' + rotation);
 	i2c1 = i2c.open(1,cd);
 	rotation = rotation - 5;
@@ -106,14 +121,13 @@ function left(){
 	i2c1.writeByte(i2c_address,0,rotation,cd);
 
 }
-function right(){
-        console.log('right');
+function left(){
+        console.log('left');
 	console.log('rotation: '+ rotation );
         i2c1 = i2c.open(1,cd);
 	rotation = rotation + 5;
 	if (rotation > 180) rotation = 180;
         i2c1.writeByte(i2c_address,0,rotation,cd);
-//        i2c1.writeByte(i2c_address,1,rotation,cd);
  
 }
 var sys = require('sys')
