@@ -62,7 +62,7 @@
 					<button type="button" class="btn btn-default btn-lg" id="right-button" aria-label="right"><span class ="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
 				</div>
 				<div class="col-xs-2 col-xs-offset-5">
-					<button type="button" id ="get_data" onclick="initData()" class="btn btn-default btn-lg">GET DATA</button>
+					<button type="button" id ="get_data" onclick="initData()" class="btn btn-default btn-lg">request</button>
 				</div>
 			</div>
 			<div class="row">
@@ -76,9 +76,9 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="box">
-						<p>Distance: <span id="distance_data"></span></p>
-						<p>Temperature: <span id="temperature_data"></span></p>
-						<p>Humidity: <span id="humidity_data"></span></p>
+						<p>Distance: <span id="distance_data">0</span>0 cm</p>
+						<p>Temperature: <span id="temperature_data">0</span> &deg C</p>
+						<p>Humidity: <span id="humidity_data">0</span> %</p>
 					</div>
 				</div>
 			</div>
@@ -106,8 +106,8 @@
 	<script src="index.js"></script>
 	<script>
 	var socket = io();
-	socket.on('data', function(number){
-		setData(number,number+1,number+2);
+	socket.on('data', function(distance, temperature, humidity){
+		setData(distance, temperature, humidity);
 	})
 	
 	document.getElementById("up-button").onclick = function() {up()};
@@ -149,7 +149,6 @@
 	}
 	function initData(){
 		socket.emit('requestData');
-		//setInterval(setData, 1000);
 	}
 	</script>
 </body>

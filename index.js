@@ -5,6 +5,8 @@ var io = require('socket.io')(http);
 var fs = require('fs');
 var path = require('path');
 var distance = 0;
+var temperature = 0;
+var humidity = 0;
 const dataIn = Buffer(6);
 
 var i2c = require('i2c-bus'),
@@ -35,7 +37,7 @@ io.on('connection', function(socket) {
   console.log("Total clients connected : ", Object.keys(sockets).length);
  
   var interval = setInterval(function(){
-	  socket.emit("data", distance);
+	  socket.emit("data", distance, temperature, humidity);
   }, 1000)
   
   socket.on('disconnect', function() {
@@ -100,6 +102,8 @@ i2c1 = i2c.open(1, cd);
 i2c1.readI2cBlock(i2c_address,0,6,dataIn,cd);
 console.log(dataIn);
 distance = dataIn[1];
+temperature = dataIn[3];
+humidity = dataIn[5];
 }
 
 
