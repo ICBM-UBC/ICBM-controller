@@ -104,7 +104,6 @@
 
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
-	var testData = 0;
 	var socket = io();
 	document.getElementById("up-button").onclick = function() {up()};
 	document.getElementById("left-button").onclick = function() {left()};
@@ -139,7 +138,8 @@
 		document.getElementById("test").style.color = "red";
 	}
 	function setData(){
-		testData++;
+		//testData++;
+		var testData = buf[1];
 		document.getElementById("distance_data").innerHTML = testData;
 		document.getElementById("temperature_data").innerHTML = testData;
 		document.getElementById("humidity_data").innerHTML = testData;
