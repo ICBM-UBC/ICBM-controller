@@ -157,7 +157,7 @@ function playLullaby(song) {
 			}
 		});
 	} else if (song == 2){
-		child = exec("aplay lullaby.mp3", function (error, stdout, stderr) {
+		child = exec("aplay hush-little.mp3", function (error, stdout, stderr) {
 			sys.print('stdout: ' + stdout);
 			sys.print('stderr: ' + stderr);
 			if (error !== null) {
@@ -165,7 +165,7 @@ function playLullaby(song) {
 			}
 		});
 	} else if (song == 3){
-		child = exec("aplay lullaby.mp3", function (error, stdout, stderr) {
+		child = exec("aplay goodnight.mp3", function (error, stdout, stderr) {
 			sys.print('stdout: ' + stdout);
 			sys.print('stderr: ' + stderr);
 			if (error !== null) {
@@ -198,10 +198,10 @@ var child2;
 function play() {
         console.log('we reached here');
         child2 = exec2("sudo aplay test.wav", function(error, stdout, stderr){
-         sys2.print('stdout: ' + stdout);
-          sys2.print('stderr: ' + stderr);
-         if (error !== null) {
-         console.log('exec error: ' + error);
+        sys2.print('stdout: ' + stdout);
+        sys2.print('stderr: ' + stderr);
+        if (error !== null) {
+        console.log('exec error: ' + error);
   }
 });
 }
