@@ -69,8 +69,8 @@ io.on('connection', function(socket) {
     down();
   });
  
-  socket.on('do-something', function() {
-    doSomething();
+  socket.on('playLullaby', function(song) {
+    playLullaby(song);
   });
 
   socket.on('record', function() {
@@ -146,15 +146,33 @@ var sys = require('sys')
 var exec = require('child_process').exec;
 var child;
 
-function doSomething() {
-        console.log('we reached here');
-	child = exec("aplay lullaby.mp3", function (error, stdout, stderr) {
- 	 sys.print('stdout: ' + stdout);
-	  sys.print('stderr: ' + stderr);
- 	 if (error !== null) {
-   	 console.log('exec error: ' + error);
-  }
-});
+function playLullaby(song) {
+    console.log('we reached here');
+	if (song == 1){
+		child = exec("aplay lullaby.mp3", function (error, stdout, stderr) {
+			sys.print('stdout: ' + stdout);
+			sys.print('stderr: ' + stderr);
+			if (error !== null) {
+				console.log('exec error: ' + error);
+			}
+		});
+	} else if (song == 2){
+		child = exec("aplay lullaby.mp3", function (error, stdout, stderr) {
+			sys.print('stdout: ' + stdout);
+			sys.print('stderr: ' + stderr);
+			if (error !== null) {
+				console.log('exec error: ' + error);
+			}
+		});
+	} else if (song == 3){
+		child = exec("aplay lullaby.mp3", function (error, stdout, stderr) {
+			sys.print('stdout: ' + stdout);
+			sys.print('stderr: ' + stderr);
+			if (error !== null) {
+				console.log('exec error: ' + error);
+			}
+		});
+	}
 }
 
 var sys1 = require('sys')
@@ -164,10 +182,10 @@ var child1;
 function record() {
         console.log('we reached here');
         child1 = exec1("sudo arecord -f dat -d 10 -D plughw:1,0 test.wav", function (error, stdout, stderr) {
-         sys1.print('stdout: ' + stdout);
-          sys1.print('stderr: ' + stderr);
-         if (error !== null) {
-         console.log('exec error: ' + error);
+        sys1.print('stdout: ' + stdout);
+        sys1.print('stderr: ' + stderr);
+        if (error !== null) {
+        console.log('exec error: ' + error);
   }
 });
 //console.log('finished 10sec recording');

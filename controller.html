@@ -45,9 +45,9 @@
 							<span id="caret" class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dLabel">								
-							<li><a onclick="doSomething()">lullaby 1</a></li>
-							<li><a onclick="selectLullaby('how are')">lullaby 2</a></li>
-							<li><a onclick="selectLullaby('you')">lullaby 3</a></li>
+							<li><a onclick="playLullaby(1)">lullaby 1</a></li>
+							<li><a onclick="playLullaby(2)">lullaby 2</a></li>
+							<li><a onclick="playLullaby(3)">lullaby 3</a></li>
 						</ul>
 					</div>
 				</div>
@@ -131,8 +131,8 @@
 	function play(){
 		socket.emit('play');
 	}
-	function doSomething() {
-		socket.emit('do-something');
+	function playLullaby(song) {
+		socket.emit('playLullaby', song);
 	}
 	function setData(d, t, h){
 		document.getElementById("distance_data").innerHTML = d;
