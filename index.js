@@ -37,6 +37,7 @@ io.on('connection', function(socket) {
   console.log("Total clients connected : ", Object.keys(sockets).length);
  
   var interval = setInterval(function(){
+	  requestData();
 	  socket.emit("data", distance, temperature, humidity);
   }, 1000)
   
